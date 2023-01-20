@@ -20,7 +20,6 @@ import pe.memo.memoflashcardsbe.config.jwt.JwtAuthenticationEntryPoint;
 public class SecurityConfig {
 
     final PasswordEncoder passwordEncoder;
-
     private final JwtAuthenticationEntryPoint authenticationEntryPoint;
     private final UserDetailsService userDetailsService;
     private final JWTFilter filter;
@@ -47,6 +46,8 @@ public class SecurityConfig {
                 .disable()
                 .authorizeHttpRequests()
                 .requestMatchers(new RegexRequestMatcher("/auth/.*", null))
+                .permitAll()
+                .requestMatchers(new RegexRequestMatcher("/", "GET"))
                 .permitAll()
                 .anyRequest().authenticated()
                 .and()

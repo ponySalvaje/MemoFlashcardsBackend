@@ -47,7 +47,7 @@ public class JWTFilter extends OncePerRequestFilter {
             } catch (ExpiredJwtException e) {
                 log.error("JWT Token has expired therefore a new token should be issued!", e);
             }
-        } else if (!request.getRequestURI().contains("login")) {
+        } else if (!request.getRequestURI().contains("auth")) {
             log.error("Token not found in auth header!");
         }
         if (null != username && SecurityContextHolder.getContext().getAuthentication() == null) {

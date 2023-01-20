@@ -5,5 +5,5 @@ import pe.memo.memoflashcardsbe.utils.PageableResponse;
 
 public interface CardService {
 
-    PageableResponse<Card> listCards(Integer pageSize, Integer pageNumber);
+    PageableResponse<Card> listCards(Integer pageSize, Integer pageNumber, String subjectId);
 }

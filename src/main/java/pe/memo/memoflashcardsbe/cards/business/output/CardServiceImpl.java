@@ -22,8 +22,8 @@ public class CardServiceImpl implements CardService {
     }
 
     @Override
-    public PageableResponse<Card> listCards(Integer pageSize, Integer pageNumber) {
-        Page<Card> resultPage = cardRepository.findAll(PageRequest.of(
+    public PageableResponse<Card> listCards(Integer pageSize, Integer pageNumber, String subjectId) {
+        Page<Card> resultPage = cardRepository.findAllBySubjectId(subjectId, PageRequest.of(
                 Optional.ofNullable(pageNumber).map(integer -> integer - 1).orElse(0),
                 Optional.ofNullable(pageSize).orElse(10)));
         return PageableResponse.<Card>builder()

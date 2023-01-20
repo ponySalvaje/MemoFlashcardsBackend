@@ -1,11 +1,11 @@
 package pe.memo.memoflashcardsbe.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import pe.memo.memoflashcardsbe.repository.entities.User;
+import pe.memo.memoflashcardsbe.repository.entities.UserData;
 
 import java.util.Optional;
 
-public interface IUserRepository extends JpaRepository<User, Long> {
+public interface IUserRepository extends JpaRepository<UserData, Long> {
 
-    Optional<User> findUserByEmail(String email);
+    Optional<UserData> findUserByEmail(String email);
 }

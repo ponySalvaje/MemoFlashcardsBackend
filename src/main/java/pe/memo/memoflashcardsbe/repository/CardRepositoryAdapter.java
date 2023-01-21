@@ -1,23 +1,23 @@
-package pe.memo.memoflashcardsbe.cards.business.output;
+package pe.memo.memoflashcardsbe.repository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.stereotype.Service;
-import pe.memo.memoflashcardsbe.cards.business.input.CardService;
-import pe.memo.memoflashcardsbe.repository.ICardRepository;
+import org.springframework.stereotype.Component;
+import pe.memo.memoflashcardsbe.cards.business.input.CardRepositoryPort;
 import pe.memo.memoflashcardsbe.repository.entities.Card;
 import pe.memo.memoflashcardsbe.utils.Metadata;
 import pe.memo.memoflashcardsbe.utils.PageableResponse;
 
 import java.util.Optional;
 
-@Service
-public class CardServiceImpl implements CardService {
+@Component
+public class CardRepositoryAdapter implements CardRepositoryPort {
+
     private final ICardRepository cardRepository;
 
     @Autowired
-    public CardServiceImpl(ICardRepository cardRepository) {
+    public CardRepositoryAdapter(ICardRepository cardRepository) {
         this.cardRepository = cardRepository;
     }
 

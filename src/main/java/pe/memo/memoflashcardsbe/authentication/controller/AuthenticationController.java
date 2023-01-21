@@ -7,10 +7,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import pe.memo.memoflashcardsbe.authentication.business.input.AuthenticationService;
+import pe.memo.memoflashcardsbe.authentication.business.output.AuthenticationService;
 import pe.memo.memoflashcardsbe.authentication.controller.request.SignInRequest;
 import pe.memo.memoflashcardsbe.authentication.controller.response.JWTResponse;
-import pe.memo.memoflashcardsbe.authentication.business.output.JwtUserDetailsService;
+import pe.memo.memoflashcardsbe.authentication.business.JwtUserDetailsService;
 import pe.memo.memoflashcardsbe.config.jwt.TokenManager;
 
 @RestController

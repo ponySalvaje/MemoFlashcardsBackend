@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import pe.memo.memoflashcardsbe.cards.business.input.CardService;
+import pe.memo.memoflashcardsbe.cards.business.output.CardService;
 import pe.memo.memoflashcardsbe.repository.entities.Card;
 import pe.memo.memoflashcardsbe.utils.PageableResponse;
 

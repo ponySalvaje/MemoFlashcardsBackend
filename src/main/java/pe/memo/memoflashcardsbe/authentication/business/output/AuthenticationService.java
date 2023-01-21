@@ -1,4 +1,4 @@
-package pe.memo.memoflashcardsbe.authentication.business.input;
+package pe.memo.memoflashcardsbe.authentication.business.output;
 
 public interface AuthenticationService {
 

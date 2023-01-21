@@ -1,4 +1,4 @@
-package pe.memo.memoflashcardsbe.repository.input;
+package pe.memo.memoflashcardsbe.authentication.business.input;
 
 public interface UserRepositoryPort {
 

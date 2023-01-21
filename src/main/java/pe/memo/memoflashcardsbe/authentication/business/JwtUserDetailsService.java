@@ -1,4 +1,4 @@
-package pe.memo.memoflashcardsbe.authentication.business.output;
+package pe.memo.memoflashcardsbe.authentication.business;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.User;

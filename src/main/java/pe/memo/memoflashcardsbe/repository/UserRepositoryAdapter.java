@@ -1,11 +1,11 @@
-package pe.memo.memoflashcardsbe.repository.output;
+package pe.memo.memoflashcardsbe.repository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Repository;
 import pe.memo.memoflashcardsbe.repository.IUserRepository;
 import pe.memo.memoflashcardsbe.repository.entities.UserData;
-import pe.memo.memoflashcardsbe.repository.input.UserRepositoryPort;
+import pe.memo.memoflashcardsbe.authentication.business.input.UserRepositoryPort;
 
 import java.util.Optional;
 

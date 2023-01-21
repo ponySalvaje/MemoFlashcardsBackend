@@ -6,4 +6,6 @@ import pe.memo.memoflashcardsbe.utils.PageableResponse;
 public interface SubjectService {
 
     PageableResponse<Subject> findAllSubjectsPageable(Integer pageSize, Integer pageNumber);
+
+    PageableResponse<Subject> findAllSubjectsByNamePageable(Integer pageSize, Integer pageNumber, String search);
 }

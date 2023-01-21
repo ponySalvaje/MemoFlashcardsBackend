@@ -20,4 +20,9 @@ public class SubjectServiceImpl implements SubjectService {
     public PageableResponse<Subject> findAllSubjectsPageable(Integer pageSize, Integer pageNumber) {
         return this.subjectRepositoryPort.findAllSubjectPageable(pageSize, pageNumber);
     }
+
+    @Override
+    public PageableResponse<Subject> findAllSubjectsByNamePageable(Integer pageSize, Integer pageNumber, String search) {
+        return this.subjectRepositoryPort.findAllSubjectsByNamePageable(pageSize, pageNumber, search);
+    }
 }

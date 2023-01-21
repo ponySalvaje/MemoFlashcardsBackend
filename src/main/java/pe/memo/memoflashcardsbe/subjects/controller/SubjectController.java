@@ -23,4 +23,9 @@ public class SubjectController {
     public PageableResponse<Subject> getSubjectsPageable(Integer pageSize, Integer pageNumber) {
         return this.subjectService.findAllSubjectsPageable(pageSize, pageNumber);
     }
+
+    @GetMapping("/search")
+    public PageableResponse<Subject> getSubjectsByNamePageable(Integer pageSize, Integer pageNumber, String term) {
+        return this.subjectService.findAllSubjectsByNamePageable(pageSize, pageNumber, term);
+    }
 }

@@ -2,6 +2,7 @@ package pe.memo.memoflashcardsbe.exceptions.domain;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.MissingServletRequestParameterException;
 
@@ -17,6 +18,13 @@ public class ExceptionEntityHandler {
                     .code("400")
                     .message(String.format("Missing parameter %s with type %s from request!", ((MissingServletRequestParameterException) e).getParameterName(), ((MissingServletRequestParameterException) e).getParameterType()))
                     .build());
+        } else if (e instanceof BadCredentialsException) {
+            return ResponseEntity.status(401)
+                    .body(ExceptionResponseWrapper.builder()
+                            .title("UNAUTHORIZED")
+                            .code("401")
+                            .message("UNAUTHORIZED")
+                            .build());
         } else {
             return ResponseEntity.status(500).body(ExceptionResponseWrapper.builder().code("500").message(e.getMessage()).build());
         }

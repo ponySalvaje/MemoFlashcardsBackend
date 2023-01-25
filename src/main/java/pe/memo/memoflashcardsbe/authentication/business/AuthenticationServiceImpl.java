@@ -2,6 +2,7 @@ package pe.memo.memoflashcardsbe.authentication.business;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.stereotype.Service;
 import pe.memo.memoflashcardsbe.authentication.business.input.UserRepositoryPort;
 import pe.memo.memoflashcardsbe.authentication.business.output.AuthenticationService;
@@ -22,6 +23,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         boolean success = this.userRepositoryPort.login(username, password);
         if (!success) {
             log.warn("Authentication attempt failed for user {}", username);
+            throw new BadCredentialsException(String.format("Failed to authenticate user %s", username));
         }
     }
 }

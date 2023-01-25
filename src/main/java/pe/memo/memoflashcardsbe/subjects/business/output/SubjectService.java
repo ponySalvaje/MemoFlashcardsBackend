@@ -8,4 +8,6 @@ public interface SubjectService {
     PageableResponse<Subject> findAllSubjectsPageable(Integer pageSize, Integer pageNumber);
 
     PageableResponse<Subject> findAllSubjectsByNamePageable(Integer pageSize, Integer pageNumber, String search);
+
+    PageableResponse<Subject> findAllSubjectsByLessonId(Long lessonId, Integer pageSize, Integer pageNumber);
 }

@@ -9,4 +9,5 @@ public interface SubjectRepositoryPort {
 
     PageableResponse<Subject> findAllSubjectsByNamePageable(Integer pageSize, Integer pageNumber, String search);
 
+    PageableResponse<Subject> findAllSubjectsByLessonIdPageable(Long lessonId, Integer pageSize, Integer pageNumber);
 }

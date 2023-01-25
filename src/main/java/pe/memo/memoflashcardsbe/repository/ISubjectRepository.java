@@ -9,4 +9,6 @@ import pe.memo.memoflashcardsbe.repository.entities.Subject;
 public interface ISubjectRepository extends JpaRepository<Subject, Integer>, PagingAndSortingRepository<Subject, Integer> {
 
     Page<Subject> findAllByNameContainingIgnoreCase(String name, Pageable pageable);
+
+    Page<Subject> findAllByLessonIdAndDeletedAtIsNull(Long lessonId, Pageable pageable);
 }

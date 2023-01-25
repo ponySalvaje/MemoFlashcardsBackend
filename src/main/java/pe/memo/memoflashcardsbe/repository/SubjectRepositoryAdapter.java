@@ -28,4 +28,9 @@ public class SubjectRepositoryAdapter implements SubjectRepositoryPort {
     public PageableResponse<Subject> findAllSubjectsByNamePageable(Integer pageSize, Integer pageNumber, String search) {
         return convertPageToPageableResponse(subjectRepository.findAllByNameContainingIgnoreCase(search, buildPageRequest(pageSize, pageNumber)));
     }
+
+    @Override
+    public PageableResponse<Subject> findAllSubjectsByLessonIdPageable(Long lessonId, Integer pageSize, Integer pageNumber) {
+        return convertPageToPageableResponse(subjectRepository.findAllByLessonIdAndDeletedAtIsNull(lessonId, buildPageRequest(pageSize, pageNumber)));
+    }
 }

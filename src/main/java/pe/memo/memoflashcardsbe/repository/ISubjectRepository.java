@@ -6,9 +6,13 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import pe.memo.memoflashcardsbe.repository.entities.Subject;
 
+import java.util.List;
+
 public interface ISubjectRepository extends JpaRepository<Subject, Integer>, PagingAndSortingRepository<Subject, Integer> {
 
     Page<Subject> findAllByNameContainingIgnoreCase(String name, Pageable pageable);
 
     Page<Subject> findAllByLessonIdAndDeletedAtIsNull(Long lessonId, Pageable pageable);
+
+    List<Subject> findAllByLessonId(Long lessonId);
 }

@@ -7,6 +7,8 @@ import pe.memo.memoflashcardsbe.subjects.business.input.SubjectRepositoryPort;
 import pe.memo.memoflashcardsbe.subjects.business.output.SubjectService;
 import pe.memo.memoflashcardsbe.utils.PageableResponse;
 
+import java.util.List;
+
 @Service
 public class SubjectServiceImpl implements SubjectService {
     private final SubjectRepositoryPort subjectRepositoryPort;
@@ -29,5 +31,10 @@ public class SubjectServiceImpl implements SubjectService {
     @Override
     public PageableResponse<Subject> findAllSubjectsByLessonId(Long lessonId, Integer pageSize, Integer pageNumber) {
         return this.subjectRepositoryPort.findAllSubjectsByLessonIdPageable(lessonId, pageSize, pageNumber);
+    }
+
+    @Override
+    public List<Subject> findAllSubjectsByLessonIdNoPaging(Long lessonId) {
+        return this.subjectRepositoryPort.findAllSubjectsByLessonIdNoPaging(lessonId);
     }
 }

@@ -6,6 +6,8 @@ import pe.memo.memoflashcardsbe.repository.entities.Subject;
 import pe.memo.memoflashcardsbe.subjects.business.input.SubjectRepositoryPort;
 import pe.memo.memoflashcardsbe.utils.PageableResponse;
 
+import java.util.List;
+
 import static pe.memo.memoflashcardsbe.utils.PageableUtils.buildPageRequest;
 import static pe.memo.memoflashcardsbe.utils.PageableUtils.convertPageToPageableResponse;
 
@@ -32,5 +34,10 @@ public class SubjectRepositoryAdapter implements SubjectRepositoryPort {
     @Override
     public PageableResponse<Subject> findAllSubjectsByLessonIdPageable(Long lessonId, Integer pageSize, Integer pageNumber) {
         return convertPageToPageableResponse(subjectRepository.findAllByLessonIdAndDeletedAtIsNull(lessonId, buildPageRequest(pageSize, pageNumber)));
+    }
+
+    @Override
+    public List<Subject> findAllSubjectsByLessonIdNoPaging(Long lessonId) {
+        return this.subjectRepository.findAllByLessonId(lessonId);
     }
 }

@@ -7,6 +7,8 @@ import pe.memo.memoflashcardsbe.cards.business.output.CardService;
 import pe.memo.memoflashcardsbe.repository.entities.Card;
 import pe.memo.memoflashcardsbe.utils.PageableResponse;
 
+import java.util.Map;
+
 @Service
 public class CardServiceImpl implements CardService {
 
@@ -20,5 +22,10 @@ public class CardServiceImpl implements CardService {
     @Override
     public PageableResponse<Card> listCards(Integer pageSize, Integer pageNumber, String subjectId) {
         return this.cardRepositoryPort.listCards(pageSize, pageNumber, subjectId);
+    }
+
+    @Override
+    public Map<String, Integer> countCardsBySubjectId(Long subjectId) {
+        return this.cardRepositoryPort.countCardsBySubjectAndIsFree(subjectId);
     }
 }

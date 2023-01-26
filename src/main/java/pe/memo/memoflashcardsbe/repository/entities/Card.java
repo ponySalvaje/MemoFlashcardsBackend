@@ -34,7 +34,7 @@ public class Card {
     private String help;
 
     @Column(name = "is_free")
-    private Byte isFree;
+    private Boolean isFree;
 
     @Column(name = "created_by_id")
     private Long createdById;
@@ -99,11 +99,11 @@ public class Card {
         this.help = help;
     }
 
-    public Byte getIsFree() {
+    public Boolean getIsFree() {
         return isFree;
     }
 
-    public void setIsFree(Byte isFree) {
+    public void setIsFree(Boolean isFree) {
         this.isFree = isFree;
     }
 

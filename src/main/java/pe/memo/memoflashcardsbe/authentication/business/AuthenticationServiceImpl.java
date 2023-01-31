@@ -26,4 +26,9 @@ public class AuthenticationServiceImpl implements AuthenticationService {
             throw new BadCredentialsException(String.format("Failed to authenticate user %s", username));
         }
     }
+
+    @Override
+    public void registerUser(String name, String email, String password) {
+        this.userRepositoryPort.registerUser(name, email, password);
+    }
 }

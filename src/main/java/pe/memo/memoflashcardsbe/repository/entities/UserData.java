@@ -1,10 +1,6 @@
 package pe.memo.memoflashcardsbe.repository.entities;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Lob;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 import java.time.Instant;
 import java.time.LocalDate;
@@ -180,4 +176,14 @@ public class UserData {
         this.updatedAt = updatedAt;
     }
 
+    @PrePersist
+    public void prePersist() {
+        this.setCreatedAt(Instant.now());
+        this.setUpdatedAt(Instant.now());
+    }
+
+    @PreUpdate
+    public void preUpdate() {
+        this.setUpdatedAt(Instant.now());
+    }
 }

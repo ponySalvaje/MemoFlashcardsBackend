@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import pe.memo.memoflashcardsbe.authentication.business.JwtUserDetailsService;
 import pe.memo.memoflashcardsbe.authentication.business.output.AuthenticationService;
+import pe.memo.memoflashcardsbe.authentication.controller.request.CreateUserRequest;
 import pe.memo.memoflashcardsbe.authentication.controller.request.SignInRequest;
 import pe.memo.memoflashcardsbe.authentication.controller.response.JWTResponse;
 import pe.memo.memoflashcardsbe.config.jwt.TokenManager;
@@ -35,8 +36,19 @@ public class AuthenticationController {
     public JWTResponse signIn(@RequestBody SignInRequest request) {
         log.info("Attempting sign in for user {}", request.username());
         this.authenticationService.login(request.username(), request.password());
-        final UserDetails userDetails = jwtUserDetailsService.loadUserByUsername(request.username());
-        final String jwtToken = tokenManager.generateJwtToken(userDetails);
+        final String jwtToken = generateTokenByUsername(request.username());
         return JWTResponse.builder().token(jwtToken).build();
+    }
+
+    private String generateTokenByUsername(String username) {
+        final UserDetails userDetails = jwtUserDetailsService.loadUserByUsername(username);
+        return tokenManager.generateJwtToken(userDetails);
+    }
+
+    @PostMapping("/register")
+    public JWTResponse registerClient(@RequestBody CreateUserRequest request) {
+        log.info("Registering user {}", request);
+        this.authenticationService.registerUser(request.name(), request.email(), request.password());
+        return JWTResponse.builder().token(generateTokenByUsername(request.email())).build();
     }
 }

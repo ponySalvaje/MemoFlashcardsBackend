@@ -6,5 +6,4 @@ public interface ScoreRepositoryPort {
 
     void createScoreForLesson(ScoreEntity score);
 
-    void updateScoreForLesson(ScoreEntity score);
 }

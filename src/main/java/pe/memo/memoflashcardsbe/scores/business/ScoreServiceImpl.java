@@ -27,14 +27,4 @@ public class ScoreServiceImpl implements ScoreService {
                 .build());
     }
 
-    @Override
-    public void updateScore(ScoreDomain scoreDomain) {
-        //TODO: Fitness logic for card repetition
-        this.scoreRepositoryPort.updateScoreForLesson(ScoreEntity.builder()
-                .id(scoreDomain.getId())
-                .score(scoreDomain.getScore().getScoreValue())
-                .userId(scoreDomain.getUserId())
-                .cardId(scoreDomain.getCardId())
-                .build());
-    }
 }

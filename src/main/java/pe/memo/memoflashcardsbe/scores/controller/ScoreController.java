@@ -2,7 +2,6 @@ package pe.memo.memoflashcardsbe.scores.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -25,12 +24,7 @@ public class ScoreController {
     }
 
     @PostMapping
-    public void createScoreForCardByUser(@RequestBody SaveScoreRequest request) {
+    public void saveScoreForCardByUser(@RequestBody SaveScoreRequest request) {
         this.scoreService.saveScore(this.scoreRestParser.convertRequestToDomain(request));
-    }
-
-    @PutMapping
-    public void updateScoreForCardByUse(@RequestBody SaveScoreRequest request){
-        this.scoreService.updateScore(this.scoreRestParser.convertRequestToDomain(request));
     }
 }

@@ -45,24 +45,23 @@ public class LessonController {
         return PageableResponse.<LessonResponse>builder()
                 .metadata(pageResponse.getMetadata())
                 .content(pageResponse.getContent().stream().map(lesson -> {
-                            List<Subject> subjects = this.subjectService.findAllSubjectsByLessonIdNoPaging(lesson.getId());
-                            Map<String, Integer> countMapSubjects = subjects.stream()
-                                    .map(subject ->
-                                            this.cardService.countCardsBySubjectId(subject.getId()))
-                                    .reduce((m1, m2) -> {
-                                        Map<String, Integer> m3 = new HashMap<>(m1);
-                                        m2.forEach((key, value) -> m3.merge(key, value, Integer::sum));
-                                        return m3;
-                                    }).orElse(defaultMap);
-                            return LessonResponse.builder()
-                                    .id(lesson.getId())
-                                    .title(lesson.getName())
-                                    .free(countMapSubjects.get("free"))
-                                    .premium(countMapSubjects.get(("premium")))
-                                    .photo(String.format("https://memoflashcards.s3.us-east-2.amazonaws.com/%s", lesson.getIconPath()))
-                                    .build();
-                        }).
-                        collect(Collectors.toList()))
+                    List<Subject> subjects = this.subjectService.findAllSubjectsByLessonIdNoPaging(lesson.getId());
+                    Map<String, Integer> countMapSubjects = subjects.stream()
+                            .map(subject ->
+                                    this.cardService.countCardsBySubjectId(subject.getId()))
+                            .reduce((m1, m2) -> {
+                                Map<String, Integer> m3 = new HashMap<>(m1);
+                                m2.forEach((key, value) -> m3.merge(key, value, Integer::sum));
+                                return m3;
+                            }).orElse(defaultMap);
+                    return LessonResponse.builder()
+                            .id(lesson.getId())
+                            .title(lesson.getName())
+                            .free(countMapSubjects.get("free"))
+                            .premium(countMapSubjects.get(("premium")))
+                            .photo(String.format("https://memoflashcards.s3.us-east-2.amazonaws.com/%s", lesson.getIconPath()))
+                            .build();
+                }).toList())
                 .build();
     }
 }

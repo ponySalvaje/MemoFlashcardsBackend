@@ -9,11 +9,11 @@ import java.util.Optional;
 @Component
 public class ScoreRestParser {
 
-    public ScoreDomain convertRequestToDomain(SaveScoreRequest request) {
+    public ScoreDomain convertRequestToDomain(SaveScoreRequest request, Long userId) {
         return Optional.ofNullable(request)
                 .map(score -> ScoreDomain.builder()
                         .id(request.id())
-                        .userId(request.userId())
+                        .userId(userId)
                         .cardId(request.cardId())
                         .score(request.score())
                         .build())

@@ -6,6 +6,7 @@ import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.stereotype.Service;
 import pe.memo.memoflashcardsbe.authentication.business.input.UserRepositoryPort;
 import pe.memo.memoflashcardsbe.authentication.business.output.AuthenticationService;
+import pe.memo.memoflashcardsbe.repository.entities.UserData;
 
 @Service
 @Slf4j
@@ -30,5 +31,10 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     @Override
     public void registerUser(String name, String email, String password) {
         this.userRepositoryPort.registerUser(name, email, password);
+    }
+
+    @Override
+    public UserData getUserDataByUsername(String username) {
+        return this.userRepositoryPort.getUserInfo(username);
     }
 }

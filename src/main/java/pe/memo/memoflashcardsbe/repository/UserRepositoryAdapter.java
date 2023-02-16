@@ -45,4 +45,9 @@ public class UserRepositoryAdapter implements UserRepositoryPort {
         userData.setUniversityId((short) 1);
         this.iUserRepository.save(userData);
     }
+
+    @Override
+    public UserData getUserInfo(String username) {
+        return this.iUserRepository.findByEmail(username);
+    }
 }

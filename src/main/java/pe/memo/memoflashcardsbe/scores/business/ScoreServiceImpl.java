@@ -24,6 +24,7 @@ public class ScoreServiceImpl implements ScoreService {
                 .score(scoreDomain.getScore().getScoreValue())
                 .userId(scoreDomain.getUserId())
                 .cardId(scoreDomain.getCardId())
+                .lastEaseFactor(2.5)
                 .build());
     }
 

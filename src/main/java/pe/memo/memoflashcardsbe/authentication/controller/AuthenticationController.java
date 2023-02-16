@@ -13,6 +13,7 @@ import pe.memo.memoflashcardsbe.authentication.controller.request.CreateUserRequ
 import pe.memo.memoflashcardsbe.authentication.controller.request.SignInRequest;
 import pe.memo.memoflashcardsbe.authentication.controller.response.JWTResponse;
 import pe.memo.memoflashcardsbe.config.jwt.TokenManager;
+import pe.memo.memoflashcardsbe.repository.entities.UserData;
 
 @RestController
 @RequestMapping(value = "/auth")
@@ -42,7 +43,8 @@ public class AuthenticationController {
 
     private String generateTokenByUsername(String username) {
         final UserDetails userDetails = jwtUserDetailsService.loadUserByUsername(username);
-        return tokenManager.generateJwtToken(userDetails);
+        UserData userData = this.authenticationService.getUserDataByUsername(username);
+        return tokenManager.generateJwtToken(userDetails, userData);
     }
 
     @PostMapping("/register")

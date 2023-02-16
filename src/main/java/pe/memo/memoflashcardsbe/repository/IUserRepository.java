@@ -7,6 +7,7 @@ import pe.memo.memoflashcardsbe.repository.entities.UserData;
 import java.util.Optional;
 
 public interface IUserRepository extends JpaRepository<UserData, Long> {
+    UserData findByEmail(String email);
 
     Optional<UserData> findUserByEmail(String email);
 

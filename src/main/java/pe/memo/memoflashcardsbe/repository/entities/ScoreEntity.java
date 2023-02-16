@@ -2,6 +2,8 @@ package pe.memo.memoflashcardsbe.repository.entities;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.PreUpdate;
@@ -23,7 +25,8 @@ import java.time.Instant;
 @Table(name = "scores")
 public class ScoreEntity {
     @Id
-    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", nullable = false)
     private Long id;
 
     @Column(name = "user_id")
@@ -56,6 +59,8 @@ public class ScoreEntity {
     @PrePersist
     void prePersist() {
         this.createdAt = Instant.now();
+        this.lastInterval = 0L;
+        this.repetitions = 0L;
     }
 
     @PreUpdate

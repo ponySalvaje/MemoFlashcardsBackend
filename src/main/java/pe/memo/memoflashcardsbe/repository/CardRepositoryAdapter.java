@@ -1,5 +1,7 @@
 package pe.memo.memoflashcardsbe.repository;
 
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import pe.memo.memoflashcardsbe.cards.business.input.CardRepositoryPort;
@@ -24,7 +26,13 @@ public class CardRepositoryAdapter implements CardRepositoryPort {
 
     @Override
     public PageableResponse<Card> listCards(Integer pageSize, Integer pageNumber, String subjectId) {
-        return convertPageToPageableResponse(cardRepository.findAllBySubjectIdAndDeletedAtIsNull(Long.parseLong(subjectId), buildPageRequest(pageSize, pageNumber)));
+        PageableResponse<Card> result = convertPageToPageableResponse(cardRepository.findAllBySubjectIdAndDeletedAtIsNull(Long.parseLong(subjectId), buildPageRequest(pageSize, pageNumber)));
+        result.getContent().forEach(card -> {
+            card.setQuestion(this.removeImageTags(card.getQuestion()));
+            card.setAnswer(this.removeImageTags(card.getAnswer()));
+            card.setHelp(this.removeImageTags(card.getHelp()));
+        });
+        return result;
     }
 
     @Override
@@ -33,5 +41,11 @@ public class CardRepositoryAdapter implements CardRepositoryPort {
         countMap.put("free", this.cardRepository.countAllBySubjectIdAndIsFree(subjectId, true));
         countMap.put("premium", this.cardRepository.countAllBySubjectIdAndIsFree(subjectId, false));
         return countMap;
+    }
+
+    private String removeImageTags(String html) {
+        Document doc = Jsoup.parse(html);
+        doc.select("img").remove();
+        return doc.html();
     }
 }

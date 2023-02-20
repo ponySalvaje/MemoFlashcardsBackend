@@ -8,7 +8,8 @@ import lombok.NoArgsConstructor;
 @Getter
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 public enum ScoreEnum {
-    SUSPENDED("Suspendido"), EASY("Fácil"), MEDIUM("Dude"), HARD("Difícil");
+    SUSPENDED("Suspendido", null), EASY("Fácil", 2.5), MEDIUM("Dude", 2.6), HARD("Difícil", 2.7);
 
     final String scoreValue;
+    final Double initialEaseFactor;
 }

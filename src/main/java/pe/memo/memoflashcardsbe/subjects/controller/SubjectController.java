@@ -12,8 +12,6 @@ import pe.memo.memoflashcardsbe.subjects.controller.response.SubjectGroupRespons
 import pe.memo.memoflashcardsbe.utils.PageableResponse;
 
 import java.util.Map;
-import java.util.Random;
-import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/subjects")
@@ -55,7 +53,7 @@ public class SubjectController {
                                     .premium(countMap.get("premium"))
                                     .build();
                         }
-                ).collect(Collectors.toList()))
+                ).toList())
                 .build();
     }
 }

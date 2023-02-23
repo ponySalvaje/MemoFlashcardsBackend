@@ -7,7 +7,7 @@ import java.util.Map;
 
 public interface CardService {
 
-    PageableResponse<Card> listCards(Integer pageSize, Integer pageNumber, String subjectId);
+    PageableResponse<Card> listCards(Integer pageSize, Integer pageNumber, String subjectId, String memberTier);
 
     Map<String,Integer> countCardsBySubjectId(Long subjectId);
 }

@@ -25,8 +25,8 @@ public class CardRepositoryAdapter implements CardRepositoryPort {
     }
 
     @Override
-    public PageableResponse<Card> listCards(Integer pageSize, Integer pageNumber, String subjectId) {
-        PageableResponse<Card> result = convertPageToPageableResponse(cardRepository.findAllBySubjectIdAndDeletedAtIsNull(Long.parseLong(subjectId), buildPageRequest(pageSize, pageNumber)));
+    public PageableResponse<Card> listCards(Integer pageSize, Integer pageNumber, String subjectId, Boolean isFreeTier) {
+        PageableResponse<Card> result = convertPageToPageableResponse(cardRepository.findAllBySubjectIdAndDeletedAtIsNullAndIsFree(Long.parseLong(subjectId), isFreeTier, buildPageRequest(pageSize, pageNumber)));
         result.getContent().forEach(card -> {
             card.setQuestion(this.removeImageTags(card.getQuestion()));
             card.setAnswer(this.removeImageTags(card.getAnswer()));

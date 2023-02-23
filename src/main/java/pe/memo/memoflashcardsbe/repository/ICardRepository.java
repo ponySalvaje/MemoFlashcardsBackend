@@ -8,7 +8,7 @@ import pe.memo.memoflashcardsbe.repository.entities.Card;
 
 public interface ICardRepository extends JpaRepository<Card, Long>, PagingAndSortingRepository<Card, Long> {
 
-    Page<Card> findAllBySubjectIdAndDeletedAtIsNull(Long subjectId, Pageable pageable);
+    Page<Card> findAllBySubjectIdAndDeletedAtIsNullAndIsFree(Long subjectId, Boolean isTrue, Pageable pageable);
 
     Integer countAllBySubjectIdAndIsFree(Long subjectId, Boolean isFree);
 }

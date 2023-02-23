@@ -7,7 +7,7 @@ import java.util.Map;
 
 public interface CardRepositoryPort {
 
-    PageableResponse<Card> listCards(Integer pageSize, Integer pageNumber, String subjectId);
+    PageableResponse<Card> listCards(Integer pageSize, Integer pageNumber, String subjectId, Boolean isFreeTier);
 
     Map<String, Integer> countCardsBySubjectAndIsFree(Long subjectId);
 }

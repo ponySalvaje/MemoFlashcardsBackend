@@ -23,4 +23,9 @@ public class LessonRepositoryAdapter implements LessonRepositoryPort {
     public PageableResponse<Lesson> findAll(Integer pageSize, Integer pageNumber) {
         return convertPageToPageableResponse(this.lessonRepository.findAllByDeletedAtIsNull(buildPageRequest(pageSize, pageNumber)));
     }
+
+    @Override
+    public Lesson findById(Long lessonId) {
+        return this.lessonRepository.findById(lessonId).orElse(null);
+    }
 }

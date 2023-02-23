@@ -10,4 +10,6 @@ public interface CardRepositoryPort {
     PageableResponse<Card> listCards(Integer pageSize, Integer pageNumber, String subjectId, Boolean isFreeTier);
 
     Map<String, Integer> countCardsBySubjectAndIsFree(Long subjectId);
+
+    Map<String,Integer> countCardsByLesson(Long lessonId);
 }

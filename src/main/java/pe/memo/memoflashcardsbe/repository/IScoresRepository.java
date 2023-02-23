@@ -10,9 +10,12 @@ import pe.memo.memoflashcardsbe.repository.entities.Card;
 import pe.memo.memoflashcardsbe.repository.entities.ScoreEntity;
 import pe.memo.memoflashcardsbe.repository.entities.UserData;
 
+import java.util.List;
 import java.util.Optional;
 
 public interface IScoresRepository extends JpaRepository<ScoreEntity, Long>, PagingAndSortingRepository<ScoreEntity, Long> {
+    List<ScoreEntity> findByUserId(Long userId);
+
     @Transactional
     @Modifying
     @Query("update ScoreEntity s set s.score = ?1 where s.user = ?2 and s.card = ?3")

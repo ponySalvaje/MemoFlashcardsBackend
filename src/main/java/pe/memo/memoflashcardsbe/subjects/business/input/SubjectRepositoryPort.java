@@ -14,4 +14,6 @@ public interface SubjectRepositoryPort {
     PageableResponse<Subject> findAllSubjectsByLessonIdPageable(Long lessonId, Integer pageSize, Integer pageNumber);
 
     List<Subject> findAllSubjectsByLessonIdNoPaging(Long lessonId);
+
+    Subject findSubjectById(Long subjectId);
 }

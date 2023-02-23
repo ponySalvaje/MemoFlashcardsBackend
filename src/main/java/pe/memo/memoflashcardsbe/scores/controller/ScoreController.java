@@ -19,8 +19,7 @@ public class ScoreController {
 
     private final ScoreRestParser scoreRestParser;
 
-    final
-    TokenManager tokenManager;
+    private final TokenManager tokenManager;
 
     @Autowired
     public ScoreController(ScoreService scoreService,

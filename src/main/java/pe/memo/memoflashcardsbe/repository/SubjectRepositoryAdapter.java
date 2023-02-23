@@ -40,4 +40,9 @@ public class SubjectRepositoryAdapter implements SubjectRepositoryPort {
     public List<Subject> findAllSubjectsByLessonIdNoPaging(Long lessonId) {
         return this.subjectRepository.findAllByLessonId(lessonId);
     }
+
+    @Override
+    public Subject findSubjectById(Long subjectId) {
+        return this.subjectRepository.findById(subjectId).orElse(null);
+    }
 }

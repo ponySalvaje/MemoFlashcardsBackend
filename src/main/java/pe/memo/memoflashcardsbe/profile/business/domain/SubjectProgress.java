@@ -13,6 +13,7 @@ import lombok.Setter;
 @Setter
 public class SubjectProgress {
 
+    Long lessonId;
     String subjectName;
     Double percentageProgress;
     Integer freeCards;

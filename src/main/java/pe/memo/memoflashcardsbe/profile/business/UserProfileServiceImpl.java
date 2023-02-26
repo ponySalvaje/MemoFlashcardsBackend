@@ -16,7 +16,6 @@ import java.math.RoundingMode;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Service
 @Slf4j
@@ -43,8 +42,9 @@ public class UserProfileServiceImpl implements UserProfileService {
         Map<Long, List<ScoreEntity>> scoreEntities = this.scoreRepositoryPort.findScoresByUserIdGroupedBySubjectId(userId);
         return scoreEntities.keySet().stream().map(lessonId -> {
             Map<String, Integer> cardCount = this.cardRepositoryPort.countCardsByLesson(lessonId);
-            BigDecimal totalCards = BigDecimal.valueOf(cardCount.get("free") + cardCount.get("premium"));
+            BigDecimal totalCards = BigDecimal.valueOf(cardCount.get("free")).add(BigDecimal.valueOf(cardCount.get("premium")));
             return SubjectProgress.builder()
+                    .lessonId(lessonId)
                     .subjectName(Optional.ofNullable(this.lessonRepositoryPort.findById(lessonId)).map(Lesson::getName).orElse(null))
                     .freeCards(cardCount.get("free"))
                     .percentageProgress(BigDecimal.valueOf(scoreEntities.get(lessonId).size())
